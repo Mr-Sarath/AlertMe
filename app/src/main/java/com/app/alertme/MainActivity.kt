@@ -76,63 +76,9 @@ class MainActivity : AppCompatActivity() {
 
         val notification = mBuilder.build()
         mNotificationManager.notify(NOTIFICATION_ID, notification)
-        alarm()
+//        alarm()
     }
 
-    private fun alarm() {
 
-        binding?.button?.setOnClickListener {
-            val calendar: Calendar = Calendar.getInstance()
-            if (Build.VERSION.SDK_INT >= 23) {
-                binding?.timepicker?.currentHour?.let { currentHour ->
-                    binding?.timepicker?.currentMinute?.let { currentMinute ->
-                        calendar.set(
-                            calendar.get(Calendar.YEAR),
-                            calendar.get(Calendar.MONTH),
-                            calendar.get(Calendar.DAY_OF_MONTH), currentHour,
-                            currentMinute,
-                            0
-                        )
-                    }
-                }
-            } else {
-                binding?.timepicker?.currentHour?.let { currentHour ->
-                    binding?.timepicker?.currentMinute?.let { currentMinute ->
-                        calendar.set(
-                            calendar.get(Calendar.YEAR),
-                            calendar.get(Calendar.MONTH),
-                            calendar.get(Calendar.DAY_OF_MONTH),
-                            currentHour,
-                            currentMinute,
-                            0
-                        )
-                    }
-                }
-            }
-            setAlarm(calendar.timeInMillis)
-        }
-    }
-
-    private fun setAlarm(timeInMillis: Long) {
-        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(this, MyAlarm::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0)
-        alarmManager.setRepeating(
-            AlarmManager.RTC,
-            timeInMillis,
-            AlarmManager.INTERVAL_DAY,
-            pendingIntent
-        )
-        Toast.makeText(this, "Alarm is set", Toast.LENGTH_SHORT).show()
-    }
-
-    private class MyAlarm : BroadcastReceiver() {
-        override fun onReceive(
-            context: Context,
-            intent: Intent
-        ) {
-            Log.d("Alarm Bell", "Alarm just fired")
-        }
-    }
 }
 
