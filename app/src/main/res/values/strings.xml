@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AlertMe</string>
+
+    <string name="content_title">ALERT ME</string>
+    <string name="content_text">YOU HAVE NOTHING TO SHOW</string>
+    <string name="subtext">Sub text</string>
+    <string name="send_notif">Send Notif</string>
+</resources>
